@@ -28,13 +28,13 @@ const Header = () => {
 
     useEffect(() => {
         const now = new Date();
-        const hour = now.getHours() > 10 ? now.getHours() : `0${now.getHours()}`;
-        const minutes = now.getMinutes() > 10 ? now.getMinutes() : `0${now.getMinutes()}`;
+        const hour = now.getHours() >= 10 ? now.getHours() : `0${now.getHours()}`;
+        const minutes = now.getMinutes() >= 10 ? now.getMinutes() : `0${now.getMinutes()}`;
         const time = (hour >= 0 && hour < 12) ? 'AM' : 'PM';
         const currTime = `${hour}:${minutes} ${time}`;
         
         const month = lookupMonth[now.getMonth()];
-        const date = now.getDate() > 10 ? now.getDate() : `0${now.getDate()}`;
+        const date = now.getDate() >= 10 ? now.getDate() : `0${now.getDate()}`;
         const currDate = `${month} ${date}`
         
         setState(prev => ({...prev, currTime: currTime, currDate: currDate}));
@@ -43,13 +43,13 @@ const Header = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             const now = new Date();
-            const hour = now.getHours() > 10 ? now.getHours() : `0${now.getHours()}`;
-            const minutes = now.getMinutes() > 10 ? now.getMinutes() : `0${now.getMinutes()}`;
+            const hour = now.getHours() >= 10 ? now.getHours() : `0${now.getHours()}`;
+            const minutes = now.getMinutes() >= 10 ? now.getMinutes() : `0${now.getMinutes()}`;
             const time = (hour >= 0 && hour < 12) ? 'AM' : 'PM';
             const currTime = `${hour}:${minutes} ${time}`;
 
             const month = lookupMonth[now.getMonth()];
-            const date = now.getDate() > 10 ? now.getDate() : `0${now.getDate()}`;
+            const date = now.getDate() >= 10 ? now.getDate() : `0${now.getDate()}`;
             const currDate = `${month} ${date}`
             
             setState(prev => ({...prev, currTime: currTime, currDate: currDate}));
