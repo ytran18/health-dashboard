@@ -1,40 +1,29 @@
 import React from "react";
 
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, } from 'chart.js'
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
-import { Line } from 'react-chartjs-2';
+const SingleChart = (props) => {
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    const { data } = props;
 
-const data = {
-    labels,
-    datasets: [
-        {
-            label: 'Dataset 1',
-            data: Math.floor(Math.random() * 101),
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-    ],
-};
-
-const options = {
-    responsive: true,
-    plugins: {
-        legend: {
-            // position: 'top' as const,
-        },
-        title: {
-            display: true,
-            text: 'Chart.js Line Chart',
-        },
-    },
-};
-
-const SingleChart = () => {
     return (
-        <div className="w-[350px] h-[300px] bg-white rounded-xl shadow-md">
-            <Line options={options} data={data}/>
+        <div className="w-[420px] h-[300px] bg-white rounded-xl shadow-md flex flex-col p-4">
+            <div className="text-[rgb(154,181,205)] text-lg font-semibold mb-3">{data?.name}</div>
+            <div className="text-sm font-semibold mb-3">{`${data.averange} bmp (averange)`}</div>
+            <div className="h-full">
+                <ResponsiveContainer width='100%' height='100%'>
+                    <LineChart
+                        width='100%'
+                        height={300}
+                        data={data?.data}
+                    >
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Line type="monotone" dataKey="value" stroke="#8884d8" tension={10} />
+                    </LineChart>
+                </ResponsiveContainer>
+            </div>
         </div>
     );
 };
