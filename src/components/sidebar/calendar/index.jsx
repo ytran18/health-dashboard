@@ -61,9 +61,10 @@ const Calendar = () => {
         const time = (hour >= 0 && hour < 12) ? 'AM' : 'PM';
         const currTime = `${hour}:${minutes} ${time}`;
         
+        const year = now.getFullYear();
         const month = lookupMonth[now.getMonth()];
         const date = now.getDate() >= 10 ? now.getDate() : `0${now.getDate()}`;
-        const currDate = `${month} ${date}`;
+        const currDate = `${year} ${month} ${date}`;
 
         const firstAndLast = firstAndLastDateOfWeek(now);
 
@@ -75,9 +76,10 @@ const Calendar = () => {
         previousWeek.setDate(previousWeek.getDate() - 7);
         const weeklyDate = firstAndLastDateOfWeek(previousWeek);
 
+        const year = previousWeek.getFullYear();
         const month = lookupMonth[previousWeek.getMonth()];
         const date = previousWeek.getDate() >= 10 ? previousWeek.getDate() : `0${previousWeek.getDate()}`;
-        const currDate = `${month} ${date}`;
+        const currDate = `${year} ${month} ${date}`;
 
         setState(prev => ({...prev, currDateOfWeek: previousWeek, weeklyDate: weeklyDate, currDate: currDate}));
     };
@@ -87,9 +89,10 @@ const Calendar = () => {
         nextWeek.setDate(nextWeek.getDate() + 7);
         const weeklyDate = firstAndLastDateOfWeek(nextWeek);
 
+        const year = nextWeek.getFullYear();
         const month = lookupMonth[nextWeek.getMonth()];
         const date = nextWeek.getDate() >= 10 ? nextWeek.getDate() : `0${nextWeek.getDate()}`;
-        const currDate = `${month} ${date}`;
+        const currDate = `${year} ${month} ${date}`;
 
         setState(prev => ({...prev, currDateOfWeek: nextWeek, weeklyDate: weeklyDate, currDate: currDate}));
     };
@@ -98,9 +101,10 @@ const Calendar = () => {
         const now = new Date();
         const firstAndLast = firstAndLastDateOfWeek(now);
 
+        const year = now.getFullYear();
         const month = lookupMonth[now.getMonth()];
         const date = now.getDate() >= 10 ? now.getDate() : `0${now.getDate()}`;
-        const currDate = `${month} ${date}`;
+        const currDate = `${year} ${month} ${date}`;
 
         setState(prev => ({...prev, weeklyDate: firstAndLast, currDate: currDate}));
     };
