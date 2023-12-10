@@ -18,7 +18,7 @@ const lookupMonth = {
     11: 'Dec',
 };
 
-const weeks = [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" ];
+const weeks = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ];
 
 const Calendar = () => {
 
@@ -26,6 +26,8 @@ const Calendar = () => {
         currDate: ``,
         weeklyDate: [],
         currDateOfWeek: ``,
+        isCurrWeek: false,
+        currDay: null,
     });
 
     const firstAndLastDateOfWeek = (date) => {
@@ -68,7 +70,7 @@ const Calendar = () => {
 
         const firstAndLast = firstAndLastDateOfWeek(now);
 
-        setState(prev => ({...prev, currTime: currTime, currDate: currDate, weeklyDate: firstAndLast, currDateOfWeek: now}));
+        setState(prev => ({...prev, currTime: currTime, currDate: currDate, weeklyDate: firstAndLast, currDateOfWeek: now, currDay: date, isCurrWeek: true}));
     },[]);
 
     const goToPreviousWeek = () => {
@@ -106,7 +108,7 @@ const Calendar = () => {
         const date = now.getDate() >= 10 ? now.getDate() : `0${now.getDate()}`;
         const currDate = `${year} ${month} ${date}`;
 
-        setState(prev => ({...prev, weeklyDate: firstAndLast, currDate: currDate}));
+        setState(prev => ({...prev, weeklyDate: firstAndLast, currDate: currDate, isCurrWeek: true, currDay: date}));
     };
 
     return (
@@ -123,48 +125,16 @@ const Calendar = () => {
             <div className="w-full flex justify-between">
                 {weeks.map((item ,index) => {
                     return (
-                        <div className="font-semibold flex flex-col items-center" key={index}>
+                        <div 
+                            className={`font-semibold p-1 transition-all duration-200 rounded cursor-pointer ${state.currDay < state.weeklyDate[index] ? '' : 'hover:bg-[rgb(59,118,239)] hover:text-white'} flex flex-col items-center ${state.isCurrWeek && state.weeklyDate[index] === state.currDay ? 'bg-[rgb(59,118,239)] text-white rounded': ''}`} 
+                            key={index}
+                        >
                             <div className="select-none">{item}</div>
                             <div className="select-none">{state.weeklyDate[index]}</div>
                         </div>
                     )
                 })}
             </div>
-            {/* <div className="w-full flex justify-between">
-                <div className="font-semibold">9</div>
-                <div className="font-semibold">10</div>
-                <div className="font-semibold">11</div>
-                <div className="font-semibold">12</div>
-                <div className="font-semibold">13</div>
-                <div className="font-semibold">14</div>
-                <div className="font-semibold">15</div>
-            </div> */}
-            {/* <div className="text-center mb-4">
-                <button
-                    className="bg-blue-500 text-white p-2 rounded-md mx-2"
-                    onClick={goToPreviousWeek}
-                >
-                    Previous Week
-                </button>
-                <button
-                    className="bg-blue-500 text-white p-2 rounded-md mx-2"
-                    onClick={goToCurrentWeek}
-                >
-                    Current Week
-                </button>
-                <button
-                    className="bg-blue-500 text-white p-2 rounded-md mx-2"
-                    onClick={goToNextWeek}
-                >
-                    Next Week
-                </button>
-            </div> */}
-            {/* <div className="text-xl font-bold mb-4">
-                {formatDate(currentWeek)} -{" "}
-                {formatDate(
-                    new Date(currentWeek.getTime() + 6 * 24 * 60 * 60 * 1000)
-                )}
-            </div> */}
         </div>
     );
 };

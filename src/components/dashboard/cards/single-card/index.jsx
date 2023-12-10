@@ -15,7 +15,7 @@ const SingleCard = (props) => {
     }[data?.type];
 
     return (
-        <div className={`w-[250px] h-[150px] rounded-xl shadow-md ${bgColor} p-3 flex flex-col`}>
+        <div className={`w-[250px] h-[150px] hover:scale-105 duration-150 cursor-pointer rounded-xl shadow-md ${bgColor} p-3 flex flex-col`}>
             <div className="text-[14px] text-white font-bold">{data?.title}</div>
             {(data?.type === 'hearth-rate' || data?.type === 'temparature') && (
                 <div className="flex items-center mt-4">

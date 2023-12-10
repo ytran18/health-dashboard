@@ -15,7 +15,7 @@ const Charts = () => {
             { name: 'Sun', value: 90 },
         ] },
         { name: 'Performance heart rate', averange: '143', data: [
-            { name: 'Monday', value: 92 },
+            { name: 'Mon', value: 92 },
             { name: 'Tue', value: 91 },
             { name: 'Wed', value: 100 },
             { name: 'Thu', value: 102 },
