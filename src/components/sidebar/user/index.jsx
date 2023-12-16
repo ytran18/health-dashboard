@@ -1,6 +1,6 @@
 import React from "react";
 
-import DefaultAvatar from '../../../assets/image/avt.jpg';
+import DefaultAvatar from '../../../assets/image/CaoHoangThien.png';
 
 const User = () => {
     return (
@@ -9,7 +9,7 @@ const User = () => {
                 <img src={DefaultAvatar} className="w-full h-full rounded-full"/>
             </div>
             <div className="flex flex-col">
-                <div className="text-sm font-bold text-[rgb(100,127,147)]">Cao Thien Du</div>
+                <div className="text-sm font-bold text-[rgb(100,127,147)]">Cao Hoàng Thiện</div>
                 <div className="text-sm font-bold text-[rgb(159,185,207)]">21 years old, Vietnam</div>
             </div>
         </div>
