@@ -5,7 +5,7 @@ import SingleCard from "./single-card";
 
 import { ReactComponent as IconHearthRate } from '../../../assets/icons/iconHearhRate.svg';
 import { ReactComponent as IconTemparature } from '../../../assets/icons/iconTemparature.svg';
-
+import { ReactComponent as IconOxygenLevel} from '../../../assets/icons/blood-oxygen-3.svg'
 
 const socket = io("localhost:5000/", {
     transports: ["websocket"],
@@ -35,7 +35,7 @@ const Cards = () => {
     const cards = [
         { title: 'Current hearth rate', type: 'hearth-rate', value: healthData.HR, icon:  IconHearthRate },
         { title: 'Body temparature', type: 'temparature', value: healthData.temp, icon: IconTemparature  },
-        { title: 'Brain activity', type: 'brain-activity', value: '80', status: "Hight"  },
+        { title: 'Current oxygen level', type: 'oxygen-level', value: healthData.SPO2, icon: IconOxygenLevel },
     ];
 
     return (
