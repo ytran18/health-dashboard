@@ -5,6 +5,7 @@ import Cards from './cards/index.jsx';
 import Charts from './charts/index.jsx';
 
 const Dashboard = () => {
+
     return (
         <div className="w-full h-full p-6">
             <div className="w-full mb-16">

@@ -12,11 +12,7 @@ const socket = io("localhost:5000/", {
 const Charts = () => {
     const [receiveChartData, setReceiveChartData] = useState([]);
     useEffect(() => {
-        socket.on("connect", () => {
-            console.log('Socket Connect:', socket.connected);
-        });
         socket.on('chart_data', (receiveChartData) => {
-            console.log('Received chart data:', receiveChartData);
             setReceiveChartData(receiveChartData);
         });
         return () => {

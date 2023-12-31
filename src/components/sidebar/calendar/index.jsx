@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { io } from "socket.io-client";
 
 import { ReactComponent as IconLeft } from '../../../assets/icons/iconLeft.svg';
 import { ReactComponent as IconRight } from '../../../assets/icons/iconRight.svg';
+
+
+const socket = io("localhost:5000/", {
+    transports: ["websocket"],
+    cors: {
+      origin: "http://localhost:3000/",
+    },
+});
 
 const lookupMonth = {
     0: 'Jan',
@@ -110,6 +119,17 @@ const Calendar = () => {
 
         setState(prev => ({...prev, weeklyDate: firstAndLast, currDate: currDate, isCurrWeek: true, currDay: date}));
     };
+    const handleOnClick = (event, clickedDay, clickedDate) => {
+        event.preventDefault();
+
+        const clickedDateObj = new Date(clickedDate);
+        const day = clickedDay;
+        const month = lookupMonth[clickedDateObj.getMonth()];
+        const year = clickedDateObj.getFullYear();
+        const dateChoose =`${year} ${month} ${day}`
+        socket.emit("Clicked", dateChoose);
+        console.log('You clicked on:',dateChoose);
+    };
 
     return (
         <div className="w-full">
@@ -124,8 +144,10 @@ const Calendar = () => {
             </div>
             <div className="w-full flex justify-between">
                 {weeks.map((item ,index) => {
+                    const clickedDay =state.weeklyDate[index];
+                    const clickedDate = state.currDate;
                     return (
-                        <div 
+                        <div onClick={(event) => handleOnClick(event, clickedDay, clickedDate)}
                             className={`font-semibold p-1 transition-all duration-200 rounded cursor-pointer ${state.currDay < state.weeklyDate[index] ? '' : 'hover:bg-[rgb(59,118,239)] hover:text-white'} flex flex-col items-center ${state.isCurrWeek && state.weeklyDate[index] === state.currDay ? 'bg-[rgb(59,118,239)] text-white rounded': ''}`} 
                             key={index}
                         >

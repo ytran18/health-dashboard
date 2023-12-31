@@ -1,18 +1,31 @@
-import './App.css';
+import "./App.css";
 
-import Dashboard from './components/dashboard/index.jsx';
-import Sidebar from './components/sidebar/index.jsx';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SignupPage from "./pages/Signup.js";
+import LoginPage from "./pages/Login.js";
+import DashboardPage from "./pages/Dashboard.js";
+import React, { useState } from "react";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [studentId, setStudentId] = useState("");
+
   return (
-        <div className="w-screen h-screen flex">
-            <div className='w-[75%] h-full bg-[rgb(244,250,254)]'>
-                <Dashboard />
-            </div>
-            <div className='w-[25%] h-full'>
-                <Sidebar />
-            </div>
-        </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <LoginPage
+              setStudentId={setStudentId}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          }
+        />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
