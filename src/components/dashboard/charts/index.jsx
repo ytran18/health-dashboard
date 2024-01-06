@@ -14,6 +14,7 @@ const Charts = () => {
     useEffect(() => {
         socket.on('chart_data', (receiveChartData) => {
             setReceiveChartData(receiveChartData);
+            console.log(receiveChartData);
         });
         return () => {
             socket.off();
@@ -45,10 +46,9 @@ const Charts = () => {
             { name: 'Heart rate', averange: '66', data: []},
             { name: 'Blood oxygen level', averange: '143', data: []}];
 
-    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    chartData[0].data = receiveChartData.map(entry => ({ name: daysOfWeek[entry._id % 7 - 1], value: entry.avgHR }));
-    chartData[1].data = receiveChartData.map(entry => ({ name: daysOfWeek[entry._id % 7 - 1], value: entry.avgSPO2 }));
-    console.log(chartData);
+    const daysOfWeek = ['Sun','Mon','Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    chartData[0].data = receiveChartData.map(entry => ({ name: daysOfWeek[entry._id - 1], value: entry.avgHR }));
+    chartData[1].data = receiveChartData.map(entry => ({ name: daysOfWeek[entry._id - 1], value: entry.avgSPO2 }));
     return (
         <div className="w-full flex px-16">
             <div className="flex justify-between w-full">

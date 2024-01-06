@@ -15,6 +15,7 @@ function App() {
       <Routes>
         <Route
           path="/"
+          exact
           element={
             <LoginPage
               setStudentId={setStudentId}

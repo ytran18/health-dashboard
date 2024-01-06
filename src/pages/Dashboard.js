@@ -27,7 +27,7 @@ function DashboardPage(props) {
   return (
     <div className="w-screen h-screen flex">
       <div className="w-[75%] h-full bg-[rgb(244,250,254)]">
-        <Dashboard />
+        <Dashboard userInfo={userInfo} />
       </div>
       <div className="w-[25%] h-full">
         <Sidebar userInfo={userInfo} />

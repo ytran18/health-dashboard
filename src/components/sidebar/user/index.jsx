@@ -8,11 +8,10 @@ const User = (props) => {
     const dob = new Date(props.DOB);
     const year = dob.getFullYear();
     const YearofBirth = yearNow - year;
-    console.log(YearofBirth);
     return (
         <div className="w-full flex items-center">
             <div className="w-[36px] h-[36px] mr-4">
-                <img src={DefaultAvatar} className="w-full h-full rounded-full" alt="avatar"/>
+                <img src="https://i.pravatar.cc/300" className="w-full h-full rounded-full" alt="avatar"/>
             </div>
             <div className="flex flex-col">
                 <div className="text-sm font-bold text-[rgb(100,127,147)]">{props.fullname}</div>

@@ -16,6 +16,7 @@ export default function Login(props) {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [loginState, setLoginState] = useState(fieldsState);
+  const [errorLogin, setErrorLogin] = useState("");
 
   const handleChange = (e) => {
     setLoginState({ ...loginState, [e.target.id]: e.target.value });
@@ -36,6 +37,10 @@ export default function Login(props) {
         if (result.data === "Success") {
           login(loginState);
           navigate("/dashboard");
+        } else if (result.data === "No record exist") {
+          setErrorLogin("Student ID does not exist");
+        } else if (result.data === "Password Incorrect") {
+          setErrorLogin("Password Incorrect");
         }
       })
       .catch((err) => {
@@ -64,7 +69,7 @@ export default function Login(props) {
           />
         ))}
       </div>
-
+      {errorLogin && <div className="text-red-500">{errorLogin}</div>}
       <FormExtra />
       <FormAction handleSubmit={handleSubmit} text="Login" />
     </form>

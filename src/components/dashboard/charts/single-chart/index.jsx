@@ -9,7 +9,7 @@ const SingleChart = (props) => {
     return (
         <div className="w-[420px] h-[300px] bg-white rounded-xl shadow-md flex flex-col p-4">
             <div className="text-[rgb(154,181,205)] text-lg font-semibold mb-3">{data?.name}</div>
-            <div className="text-sm font-semibold mb-3">{`${data.averange} bmp (averange)`}</div>
+            {/* <div className="text-sm font-semibold mb-3">{`${data.averange} bmp (averange)`}</div> */}
             <div className="h-full">
                 <ResponsiveContainer width='100%' height='100%'>
                     <LineChart
